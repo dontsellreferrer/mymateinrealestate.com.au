@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're in — My Mate in Real Estate</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0E2A44; --coral: #E07856; --swell: #2A6EA8;
+    --sand: #E8D9BE; --paper: #F4EEE2; --cream: #FAF6EC;
+    --ink: #141111; --white: #FFFFFF;
+    --r-purple: #1E1040; --r-orange: #FF6200; --r-orangeLt: #FF7A1A;
+  }
+  body { font-family: "Plus Jakarta Sans", sans-serif; background: var(--cream); color: var(--ink); min-height: 100svh; display: flex; flex-direction: column; }
+
+  .site-header {
+    padding: 1.125rem clamp(1.25rem,5vw,3.5rem);
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid rgba(14,42,68,0.07); background: var(--cream);
+  }
+  .header-logo { display: flex; align-items: baseline; gap: 0.15em; text-decoration: none; font-size: 1rem; font-weight: 700; color: var(--navy); }
+  .header-logo em { font-family: "Instrument Serif", serif; font-style: italic; color: var(--coral); font-size: 1.3em; line-height: 1; }
+
+  main {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+    padding: clamp(2.5rem,6vw,4.5rem) clamp(1.25rem,5vw,2rem);
+    max-width: 760px; margin: 0 auto; width: 100%; gap: 1.25rem;
+  }
+
+  .confirm-banner {
+    width: 100%; background: var(--navy); border-radius: 18px;
+    padding: 1.5rem 1.75rem; display: flex; align-items: flex-start; gap: 1.25rem;
+    border-left: 4px solid var(--coral);
+    animation: slideDown 0.5s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+  .confirm-tick {
+    width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+    background: var(--coral); display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; color: var(--white); font-weight: 700;
+  }
+  .confirm-text h2 { font-size: 1.175rem; font-weight: 800; color: var(--cream); letter-spacing: -0.02em; margin-bottom: 0.35rem; }
+  .confirm-text p { font-size: 0.9rem; color: var(--sand); line-height: 1.6; opacity: 0.85; }
+
+  .paths {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; width: 100%;
+    animation: fadeUp 0.5s 0.15s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  .path {
+    background: var(--white); border-radius: 16px; padding: 1.5rem;
+    border: 1.5px solid rgba(14,42,68,0.1);
+    display: flex; flex-direction: column; gap: 0.625rem;
+  }
+  .path.featured { background: var(--r-purple); border-color: var(--r-orange); }
+  .path-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .path .path-label { color: var(--swell); }
+  .path.featured .path-label { color: var(--r-orange); }
+  .path h3 { font-size: 1rem; font-weight: 700; color: var(--navy); line-height: 1.25; }
+  .path.featured h3 { color: var(--white); }
+  .path > p { font-size: 0.85rem; line-height: 1.6; color: var(--ink); opacity: 0.6; }
+  .path.featured > p { color: rgba(255,255,255,0.5); opacity: 1; }
+
+  /* Commission tiles with expand */
+  .commission-reveal { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.25rem; }
+
+  .comm-tile {
+    background: var(--paper); border-radius: 10px; border: 1px solid rgba(14,42,68,0.08);
+    overflow: hidden;
+  }
+  .comm-tile-header {
+    display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+    padding: 0.7rem 0.875rem; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .comm-tile-header:hover { background: rgba(14,42,68,0.03); }
+  .comm-tile-left { flex: 1; }
+  .comm-tile-label { font-size: 0.8rem; font-weight: 700; color: var(--navy); }
+  .comm-tile-sub { font-size: 0.7rem; color: var(--ink); opacity: 0.45; margin-top: 0.1rem; }
+  .comm-tile-right { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+  .comm-tile-share { font-size: 0.9rem; font-weight: 800; color: var(--r-orange); white-space: nowrap; }
+  .comm-tile-chevron {
+    width: 16px; height: 16px; opacity: 0.35; flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+  .comm-tile.open .comm-tile-chevron { transform: rotate(180deg); }
+
+  .comm-tile-detail {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .comm-tile.open .comm-tile-detail { max-height: 300px; }
+  .comm-tile-detail-inner {
+    padding: 0 0.875rem 0.875rem;
+    border-top: 1px solid rgba(14,42,68,0.07);
+    padding-top: 0.75rem;
+  }
+  .comm-detail-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 0.75rem; padding: 0.3rem 0;
+    border-bottom: 1px solid rgba(14,42,68,0.06);
+  }
+  .comm-detail-row:last-child { border-bottom: none; }
+  .comm-detail-label { color: var(--ink); opacity: 0.55; }
+  .comm-detail-value { font-weight: 600; color: var(--navy); text-align: right; }
+  .comm-detail-value.highlight { color: var(--r-orange); }
+
+  .commission-note { font-size: 0.7rem; color: var(--ink); opacity: 0.38; line-height: 1.5; margin-top: 0.375rem; }
+
+  .referrer-logo-wrap { max-width: 170px; margin-bottom: 0.25rem; }
+  .referrer-logo-wrap svg { width: 100%; height: auto; display: block; }
+
+  .video-placeholder {
+    width: 100%; aspect-ratio: 16/9; background: var(--paper); border-radius: 10px;
+    border: 1.5px dashed rgba(14,42,68,0.18);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.5rem; margin-top: 0.25rem; cursor: pointer; transition: background 0.2s;
+  }
+  .video-placeholder:hover { background: var(--sand); }
+  .video-play {
+    width: 44px; height: 44px; border-radius: 50%; background: var(--coral);
+    display: flex; align-items: center; justify-content: center; opacity: 0.8;
+  }
+  .video-placeholder-label { font-size: 0.75rem; font-weight: 600; color: var(--navy); opacity: 0.4; }
+
+  .path-btn {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.7rem 1.25rem; border-radius: 100px;
+    font-size: 0.875rem; font-weight: 700; text-decoration: none;
+    transition: background 0.2s, transform 0.15s; width: fit-content; margin-top: auto;
+  }
+  .path-btn:hover { transform: translateY(-1px); }
+  .path-btn.primary { background: var(--r-orange); color: var(--white); }
+  .path-btn.primary:hover { background: var(--r-orangeLt); }
+
+  .footer-note {
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    background: rgba(14,42,68,0.04); border-radius: 12px; padding: 1rem 1.25rem;
+    animation: fadeUp 0.5s 0.3s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  .footer-note p { font-size: 0.8rem; color: var(--ink); opacity: 0.5; line-height: 1.5; max-width: 52ch; }
+  .footer-note a { font-size: 0.85rem; font-weight: 700; color: var(--navy); text-decoration: none; white-space: nowrap; margin-left: 1.5rem; opacity: 0.5; transition: opacity 0.2s; }
+  .footer-note a:hover { opacity: 1; }
+
+  @keyframes slideDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
+  @keyframes fadeUp    { from { opacity: 0; transform: translateY(16px);  } to { opacity: 1; transform: none; } }
+
+  @media (max-width: 600px) {
+    .paths { grid-template-columns: 1fr; }
+    .confirm-banner { flex-direction: column; gap: 0.875rem; }
+    .footer-note { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
+    .footer-note a { margin-left: 0; }
+  }
+  @media (max-width: 400px) {
+    main { padding: 1.75rem 1.125rem; }
+    .confirm-banner { padding: 1.25rem; }
+    .path { padding: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="header-logo">My <em>Mate</em> in Real Estate</a>
+</header>
+
+<main id="pageMain"></main>
+
+<script>
+(function() {
+  // ── URL params ──────────────────────────────────────────────────────────────
+  var p       = new URLSearchParams(window.location.search);
+  var type    = p.get('type')    || 'mate';
+  var name    = p.get('name')    || '';
+  var company = p.get('company') || '';
+  var email   = p.get('email')   || '';
+  var phone   = p.get('phone')   || '';
+
+  var isMate     = (type !== 'referrer');
+  var firstName  = name.split(' ')[0] || '';
+
+  // ── referrer.com.au signup URL ─────────────────────────────────────────────
+  var sp = new URLSearchParams();
+  if (name)    sp.set('name',    name);
+  if (email)   sp.set('email',   email);
+  if (phone)   sp.set('phone',   phone);
+  if (company) sp.set('company', company);
+  sp.set('source', 'mmire-' + type);
+  var signupUrl = 'https://referrer.com.au/signup?' + sp.toString();
+
+  // ── Safe text helper ────────────────────────────────────────────────────────
+  function t(str) {
+    var d = document.createElement('div');
+    d.appendChild(document.createTextNode(str));
+    return d.innerHTML;
+  }
+
+  // ── Referrer logo SVG (transparent, white+orange paths) ────────────────────
+  var LOGO_PATHS = "<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#FFFFFF\" d=\"M264.977,100.408h16.878h24.781h2.767h0.025\n\tc-0.371-3.08-1.276-5.88-2.716-8.4c-2.036-3.564-4.81-6.363-8.323-8.399c-3.513-2.037-7.56-3.055-12.141-3.055\n\tc-4.683,0-8.782,1.018-12.294,3.055c-3.512,2.036-6.262,4.861-8.246,8.475c-1.361,2.475-2.255,5.25-2.683,8.324H264.977z\n\t M289.149,148.819c-9.061,0-16.978-1.807-23.747-5.422c-6.771-3.615-12.015-8.577-15.731-14.891\n\tc-3.716-6.312-5.574-13.489-5.574-21.532c0-8.145,1.807-15.348,5.422-21.609c3.615-6.262,8.603-11.175,14.965-14.738\n\tc6.365-3.563,13.619-5.345,21.764-5.345c7.941,0,15.017,1.729,21.228,5.192c6.21,3.461,11.097,8.348,14.661,14.66\n\tc3.563,6.313,5.345,13.745,5.345,22.296c0,0.815-0.024,1.732-0.076,2.75s-0.128,1.985-0.229,2.901h-45.32h-16.878h-1.788\n\tc0.521,2.818,1.488,5.415,2.899,7.788c2.24,3.768,5.396,6.67,9.468,8.705c4.073,2.037,8.757,3.055,14.05,3.055\n\tc4.583,0,8.705-0.712,12.371-2.139c3.665-1.424,6.923-3.664,9.774-6.719l10.232,11.759c-3.666,4.276-8.272,7.56-13.822,9.851\n\tC302.614,147.674,296.276,148.819,289.149,148.819z M126.768,100.408h16.878h24.781h2.767h0.025c-0.371-3.08-1.276-5.88-2.716-8.4\n\tc-2.036-3.564-4.81-6.363-8.323-8.399c-3.513-2.037-7.56-3.055-12.141-3.055c-4.683,0-8.781,1.018-12.294,3.055\n\tc-3.512,2.036-6.262,4.861-8.246,8.475c-1.36,2.475-2.254,5.25-2.683,8.324H126.768z M150.94,148.819\n\tc-9.061,0-16.978-1.807-23.747-5.422c-6.771-3.615-12.015-8.577-15.731-14.891c-3.716-6.312-5.575-13.489-5.575-21.532\n\tc0-8.145,1.807-15.348,5.422-21.609c3.615-6.262,8.603-11.175,14.965-14.738c6.364-3.563,13.619-5.345,21.763-5.345\n\tc7.942,0,15.017,1.729,21.228,5.192c6.21,3.461,11.097,8.348,14.662,14.66c3.563,6.313,5.345,13.745,5.345,22.296\n\tc0,0.815-0.025,1.732-0.076,2.75s-0.128,1.985-0.229,2.901h-45.32h-16.878h-1.788c0.522,2.818,1.488,5.415,2.9,7.788\n\tc2.24,3.768,5.396,6.67,9.468,8.705c4.073,2.037,8.757,3.055,14.05,3.055c4.583,0,8.705-0.712,12.371-2.139\n\tc3.665-1.424,6.923-3.664,9.774-6.719l10.232,11.759c-3.666,4.276-8.272,7.56-13.821,9.851\n\tC164.405,147.674,158.067,148.819,150.94,148.819z M200.044,66.81v-5.192c0-8.553,2.52-15.399,7.56-20.541\n\tc5.04-5.142,12.243-7.712,21.609-7.712c3.36,0,6.542,0.356,9.545,1.069c3.004,0.712,5.523,1.832,7.56,3.359l-5.192,14.356\n\tc-1.425-1.121-3.055-1.96-4.888-2.521c-1.832-0.561-3.716-0.84-5.65-0.84c-3.971,0-6.975,1.094-9.011,3.283\n\tc-2.036,2.19-3.054,5.473-3.054,9.851v4.887h22.449v15.272h-21.838v65.668h-19.089V82.082V66.81z M54.138,147.75V66.199h18.174\n\tv11.911h0.02c2.351-3.582,5.474-6.432,9.371-8.551c5.243-2.851,11.785-4.275,19.624-4.275v18.173\n\tc-0.814-0.203-1.577-0.332-2.29-0.382c-0.714-0.051-1.426-0.076-2.139-0.076c-7.229,0-12.981,2.112-17.257,6.337\n\ts-6.413,10.512-6.413,18.86v39.554H54.138z M340.137,147.75V66.199h18.174v11.911h0.021c2.351-3.582,5.474-6.432,9.371-8.551\n\tc5.243-2.851,11.784-4.275,19.624-4.275v18.173c-0.814-0.203-1.578-0.332-2.29-0.382c-0.714-0.051-1.426-0.076-2.139-0.076\n\tc-7.229,0-12.981,2.112-17.258,6.337c-4.275,4.225-6.413,10.512-6.413,18.86v39.554H340.137z\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#FFFFFF\" d=\"M414.789,175.225c1.896,0,3.434,1.537,3.434,3.433\n\tc0,1.896-1.538,3.435-3.434,3.435c-1.896,0-3.434-1.537-3.434-3.435C411.355,176.762,412.894,175.225,414.789,175.225\n\t M512.25,175.225c1.896,0,3.433,1.537,3.433,3.433c0,1.896-1.537,3.435-3.433,3.435c-1.897,0-3.435-1.537-3.435-3.435\n\tC508.815,176.762,510.354,175.225,512.25,175.225z M559.614,181.435c-0.25,0.147-0.509,0.28-0.775,0.398\n\tc-1.271,0.57-2.685,0.766-4.068,0.766c-2.736,0-5.546-0.65-7.354-2.864c-1.874-2.295-2.239-5.845-2.239-8.709v-11.924h5.217v12.107\n\tc0,1.47,0.133,3.868,1.068,5.064c0.779,1.005,2.19,1.215,3.383,1.215c0.853,0,1.7-0.149,2.458-0.557\n\tc0.691-0.366,1.222-0.893,1.623-1.558c0.258-0.441,0.411-0.948,0.507-1.446c0.205-1.107,0.181-2.386,0.181-3.514v-11.313h5.253\n\tv22.96h-5.253V181.435z M536.614,170.452c0-1.85-0.664-3.392-1.938-4.723c-1.195-1.25-2.606-1.998-4.36-1.998\n\tc-1.839,0-3.34,0.668-4.604,1.997c-1.352,1.418-1.934,3.114-1.934,5.058c0,1.867,0.595,3.46,1.908,4.8\n\tc1.261,1.286,2.749,1.94,4.554,1.94c1.793,0,3.224-0.745,4.43-2.041C535.996,174.061,536.614,172.394,536.614,170.452z\n\t M536.614,180.666c-0.443,0.304-0.911,0.572-1.397,0.806c-1.59,0.76-3.292,1.127-5.052,1.127c-3.254,0-6.106-1.113-8.386-3.458\n\tc-2.282-2.34-3.351-5.216-3.351-8.468c0-3.296,1.093-6.2,3.422-8.558c2.336-2.356,5.242-3.455,8.541-3.455\n\tc1.699,0,3.347,0.34,4.878,1.086c0.469,0.229,0.918,0.492,1.345,0.788v-1.433h5.197v22.96h-5.197V180.666z M487.608,161.509\n\tc0.715-0.712,1.531-1.302,2.442-1.758c1.469-0.733,3.065-1.053,4.701-1.053c2.729,0,5.364,0.749,7.075,3.008\n\tc1.792,2.368,2.151,5.9,2.151,8.785v11.57h-5.146v-12.107c0-1.441-0.136-3.74-1.052-4.915c-0.762-0.984-2.119-1.195-3.287-1.195\n\tc-0.847,0-1.679,0.152-2.43,0.557c-0.673,0.359-1.183,0.867-1.563,1.517c-0.26,0.466-0.42,0.975-0.521,1.493\n\tc-0.204,1.084-0.179,2.349-0.179,3.452v11.199h-5.108v-12.693c0-1.382-0.178-3.229-1.109-4.321c-0.82-0.968-2.138-1.203-3.344-1.203\n\tc-0.866,0-1.72,0.15-2.491,0.558c-0.677,0.36-1.199,0.87-1.586,1.53c-0.263,0.454-0.425,0.954-0.518,1.473\n\tc-0.203,1.081-0.173,2.355-0.173,3.458v11.199h-5.216v-22.96h5.216v0.836c0.287-0.163,0.582-0.311,0.886-0.442\n\tc1.297-0.566,2.692-0.797,4.103-0.797c1.683,0,3.313,0.347,4.814,1.116C486.141,160.259,486.934,160.818,487.608,161.509z\n\t M449.683,170.56c0,1.905,0.553,3.576,1.868,4.977c1.26,1.333,2.766,1.952,4.595,1.952c1.802,0,3.279-0.632,4.512-1.948\n\tc1.314-1.41,1.856-3.104,1.856-5.012c0-1.904-0.529-3.608-1.871-4.996c-1.3-1.342-2.886-1.914-4.737-1.914\n\tc-1.755,0-3.167,0.687-4.355,1.961C450.24,166.983,449.683,168.655,449.683,170.56z M444.295,170.604\n\tc0-3.302,1.141-6.185,3.435-8.564c2.234-2.317,4.979-3.582,8.214-3.582c3.287,0,6.136,1.183,8.457,3.51\n\tc2.297,2.305,3.498,5.116,3.498,8.377c0,3.322-1.117,6.246-3.407,8.664c-2.261,2.38-5.056,3.627-8.346,3.627\n\ts-6.128-1.191-8.419-3.555C445.445,176.73,444.295,173.88,444.295,170.604z M436.922,167.299c-0.595-1.095-1.385-2.116-2.454-2.78\n\tc-1.034-0.634-2.212-0.862-3.414-0.862c-1.754,0-3.167,0.664-4.348,1.952c-1.294,1.412-1.838,3.09-1.838,4.988\n\tc0,1.89,0.539,3.563,1.843,4.956c1.215,1.305,2.676,1.936,4.456,1.936c1.242,0,2.403-0.281,3.454-0.955\n\tc1.032-0.664,1.756-1.578,2.255-2.691l0.351-0.784h5.62l-0.632,1.772c-0.828,2.316-2.176,4.307-4.189,5.749\n\tc-1.996,1.428-4.293,2.057-6.732,2.057c-3.279,0-6.113-1.178-8.399-3.535c-2.275-2.347-3.411-5.199-3.411-8.466\n\tc0-3.304,1.136-6.196,3.454-8.56c2.304-2.346,5.146-3.528,8.432-3.528c2.396,0,4.625,0.637,6.587,2.025\n\tc1.997,1.406,3.367,3.352,4.246,5.613l0.701,1.806h-5.604L436.922,167.299z\"/>\n<g>\n\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#FF6200\" d=\"M400.675,147.75V66.199h18.174v11.911h0.021\n\t\tc2.351-3.582,5.475-6.432,9.371-8.551c5.243-2.851,11.785-4.275,19.624-4.275v18.173c-0.814-0.203-1.577-0.332-2.29-0.382\n\t\tc-0.714-0.051-1.426-0.076-2.138-0.076c-7.229,0-12.981,2.112-17.258,6.337s-6.413,10.512-6.413,18.86v39.554H400.675z\n\t\t M546.673,147.75V66.199h18.174v11.911h0.02c2.352-3.582,5.475-6.432,9.372-8.551c5.242-2.851,11.784-4.275,19.623-4.275v18.173\n\t\tc-0.813-0.203-1.577-0.332-2.289-0.382c-0.714-0.051-1.426-0.076-2.139-0.076c-7.229,0-12.981,2.112-17.258,6.337\n\t\tc-4.275,4.225-6.413,10.512-6.413,18.86v39.554H546.673z\"/>\n\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#FF6200\" d=\"M527.188,120.526l-2.738,26.798l-23.063-20.045L527.188,120.526z\n\t\t M468.115,113.968c0.964,5.367,3.27,10.076,7.34,13.932c4.894,4.637,10.807,6.581,17.481,6.581c4.583,0,8.855-1.092,12.744-3.467\n\t\tl12.547,10.904c-0.492,0.387-0.994,0.763-1.506,1.126c-7.002,4.972-14.953,7.255-23.505,7.255c-11.698,0-21.762-4.193-29.912-12.6\n\t\tc-8.117-8.367-12.18-18.511-12.18-30.159c0-2.295,0.146-4.586,0.451-6.859l0.196-1.443h64.984c-1.518-4.925-3.94-9.65-7.859-13.083\n\t\tc-4.69-4.108-10.583-5.511-16.7-5.511c-4.771,0-9.109,1.095-12.955,3.534l-1.12,0.813l3.602,3.597l-24.801,4.431l4.514-24.689\n\t\tl5.444,5.436l0.577-0.531c7.503-5.715,16.386-8.27,26.149-8.27c11.698,0,21.896,3.949,29.859,12.646\n\t\tc8.268,9.022,11.49,20.301,11.49,32.356v4.001H468.115z\"/>\n</g>";
+  var logoSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 648 216.667">' + LOGO_PATHS + '</svg>';
+
+  // ── Build DOM nodes directly — no innerHTML for user data ──────────────────
+  function el(tag, attrs, children) {
+    var node = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function(k) {
+      if (k === 'class') node.className = attrs[k];
+      else node.setAttribute(k, attrs[k]);
+    });
+    (children || []).forEach(function(c) {
+      if (typeof c === 'string') node.appendChild(document.createTextNode(c));
+      else if (c) node.appendChild(c);
+    });
+    return node;
+  }
+  function html(tag, attrs, htmlStr) {
+    var node = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function(k) {
+      if (k === 'class') node.className = attrs[k];
+      else node.setAttribute(k, attrs[k]);
+    });
+    node.innerHTML = htmlStr;
+    return node;
+  }
+
+  // ── Commission tiles with expand ───────────────────────────────────────────
+  function toggleTile(tile) {
+    tile.classList.toggle('open');
+  }
+
+  function commTile(label, sub, share, detailRows) {
+    var tile   = el('div', {'class':'comm-tile'});
+    var header = el('div', {'class':'comm-tile-header'});
+    header.onclick = function() { toggleTile(tile); };
+
+    var left = el('div', {'class':'comm-tile-left'});
+    left.appendChild(el('div', {'class':'comm-tile-label'}, [label]));
+    if (sub) left.appendChild(el('div', {'class':'comm-tile-sub'}, [sub]));
+
+    var right = el('div', {'class':'comm-tile-right'});
+    right.appendChild(el('div', {'class':'comm-tile-share'}, [share]));
+    right.innerHTML += '<svg class="comm-tile-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#0E2A44" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+    header.appendChild(left);
+    header.appendChild(right);
+
+    var detail = el('div', {'class':'comm-tile-detail'});
+    var inner  = el('div', {'class':'comm-tile-detail-inner'});
+    detailRows.forEach(function(r) {
+      var row = el('div', {'class':'comm-detail-row'});
+      row.appendChild(el('span', {'class':'comm-detail-label'}, [r[0]]));
+      var val = el('span', {'class': r[2] ? 'comm-detail-value highlight' : 'comm-detail-value'}, [r[1]]);
+      row.appendChild(val);
+      inner.appendChild(row);
+    });
+    detail.appendChild(inner);
+
+    tile.appendChild(header);
+    tile.appendChild(detail);
+    return tile;
+  }
+
+  function buildCommission(tiles, note) {
+    var wrap = el('div', {'class':'commission-reveal'});
+    tiles.forEach(function(t) { wrap.appendChild(t); });
+    wrap.appendChild(el('p', {'class':'commission-note'}, [note]));
+    return wrap;
+  }
+
+  // Mate commission tiles
+  var mateCommission = buildCommission([
+    commTile(
+      'Broker referral', 'You refer a home loan',
+      '80% of pool',
+      [
+        ['Example', '$600K loan \xd7 0.65% = $3,900 gross', false],
+        ['Broker contributes', '50% = $1,950', false],
+        ['Platform retains', '20% of pool = $390', false],
+        ['You receive', '$1,560 + GST', true],
+      ]
+    ),
+    commTile(
+      'PM referral', 'You refer a landlord/investor',
+      '80% of pool',
+      [
+        ['Example', '$600/wk \xd7 6% \xd7 52wks = $1,872/yr', false],
+        ['PM contributes', '100% of first year fee = $1,872', false],
+        ['Platform retains', '20% of pool = $374', false],
+        ['You receive', '$1,497.60 + GST', true],
+      ]
+    ),
+    commTile(
+      'If you take over the sale', 'Owner lists with you as their agent',
+      '80% of gross',
+      [
+        ['Example', '$900K \xd7 2% = $18,000 gross', false],
+        ['Platform retains', '20% = $3,600', false],
+        ['You receive', '$14,400 + GST', true],
+      ]
+    ),
+  ], 'Actual amounts vary by deal size. Settlement or first fee receipt is the payment trigger. Full detail at referrer.com.au.');
+
+  // Referrer commission tiles
+  var referrerCommission = buildCommission([
+    commTile(
+      'Every referral fee', 'You send the lead, we do the rest',
+      '90%',
+      [
+        ['Platform fee', '10% only \u2014 not 20%', false],
+        ['You keep', '90% of every referral fee', true],
+        ['Example: 1 broker referral/wk', '\u2248$60,000+ per year', true],
+      ]
+    ),
+    commTile(
+      'No reciprocal obligation', 'Pure originator status',
+      '10% fee only',
+      [
+        ['You give', 'Leads via your platform or network', false],
+        ['You get', '90% of every conversion fee', true],
+        ['Licensed service required?', 'No', false],
+      ]
+    ),
+  ], 'You\u2019re a pure originator \u2014 give leads, earn income. Settlement is the payment trigger.');
+
+  // ── Video placeholder ───────────────────────────────────────────────────────
+  var videoWrap = el('div', {'class':'video-placeholder', 'title':'Walkthrough video — coming soon'});
+  var playBtn   = el('div', {'class':'video-play'});
+  playBtn.innerHTML = '<svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M2 2l12 7-12 7V2z" fill="#FAF6EC"/></svg>';
+  videoWrap.appendChild(playBtn);
+  videoWrap.appendChild(el('span', {'class':'video-placeholder-label'}, ['Walkthrough video — coming soon']));
+
+  // ── Confirm banner ──────────────────────────────────────────────────────────
+  var bannerHeading = isMate
+    ? 'Expression of interest received' + (firstName ? ', ' + firstName : '') + '.'
+    : 'Registration received' + (firstName ? ', ' + firstName : '') + '.';
+  var bannerBody = isMate
+    ? "We'll review your details and be in touch within 2 business days. Your commission breakdown is below — and you can jump straight into Referrer.com.au."
+    : "We'll be in touch within 2 business days with a proposal tailored to " + (company || 'your platform') + ". Your preferred partner rates are below.";
+
+  var tick = el('div', {'class':'confirm-tick'}, ['✓']);
+  var confirmText = el('div', {'class':'confirm-text'});
+  confirmText.appendChild(el('h2', {}, [bannerHeading]));
+  confirmText.appendChild(el('p',  {}, [bannerBody]));
+  var banner = el('div', {'class':'confirm-banner'});
+  banner.appendChild(tick);
+  banner.appendChild(confirmText);
+
+  // ── Left card (wait) ────────────────────────────────────────────────────────
+  var waitHeading = isMate ? "We'll walk you through it" : "We'll walk you through it";
+  var waitBody    = isMate
+    ? "We'll be in touch within 2 business days to talk through your market, your approach, and whether there's a fit."
+    : "We'll call within 2 business days to walk through how the integration works for your specific platform and vendor base.";
+
+  var waitCard = el('div', {'class':'path'});
+  waitCard.appendChild(el('p', {'class':'path-label'}, ['Wait for our call']));
+  waitCard.appendChild(el('h3', {}, [waitHeading]));
+  waitCard.appendChild(el('p',  {}, [waitBody]));
+  waitCard.appendChild(isMate ? mateCommission : referrerCommission);
+  waitCard.appendChild(videoWrap);
+
+  // ── Right card (jump in) ────────────────────────────────────────────────────
+  var jumpHeading = isMate ? 'Join Referrer.com.au now' : 'Set up your account now';
+  var jumpBody    = isMate
+    ? 'Start building your professional referral network today. Free to join. Your income stream starts from your first referral.'
+    : 'Your platform account is waiting. Free to join. No contracts. Your preferred partner rate is locked from day one.';
+
+  var logoWrap = el('div', {'class':'referrer-logo-wrap'});
+  logoWrap.innerHTML = logoSvg;
+
+  var jumpBtn = el('a', {'class':'path-btn primary', 'href': signupUrl, 'target':'_blank', 'rel':'noopener'}, ['Join Referrer.com.au →']);
+
+  var jumpCard = el('div', {'class':'path featured'});
+  jumpCard.appendChild(logoWrap);
+  jumpCard.appendChild(el('p', {'class':'path-label'}, ['Jump right in']));
+  jumpCard.appendChild(el('h3', {}, [jumpHeading]));
+  jumpCard.appendChild(el('p',  {}, [jumpBody]));
+  jumpCard.appendChild(jumpBtn);
+
+  // ── Paths grid ──────────────────────────────────────────────────────────────
+  var paths = el('div', {'class':'paths'});
+  paths.appendChild(waitCard);
+  paths.appendChild(jumpCard);
+
+  // ── Footer note ─────────────────────────────────────────────────────────────
+  var footerText = isMate
+    ? 'Commission rates, how referral tracking works, and what to expect as a Mate — all at referrer.com.au'
+    : 'Full commission details, integration guide, and platform partner terms — all at referrer.com.au';
+
+  var footerNote = el('div', {'class':'footer-note'});
+  footerNote.appendChild(el('p', {}, [footerText]));
+  footerNote.appendChild(el('a', {'href':'https://referrer.com.au','target':'_blank','rel':'noopener'}, ['referrer.com.au →']));
+
+  // ── Mount ───────────────────────────────────────────────────────────────────
+  var main = document.getElementById('pageMain');
+  main.appendChild(banner);
+  main.appendChild(paths);
+  main.appendChild(footerNote);
+
+})();
+</script>
+</body>
+</html>

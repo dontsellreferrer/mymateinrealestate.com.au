@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Mate in Real Estate — Expert backup for private sellers</title>
+<meta name="description" content="My Mate in Real Estate connects private sellers with a trusted local agent — their Mate — for expert backup when it matters most. Free. No catch.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="My Mate in Real Estate — Expert backup for private sellers">
+<meta property="og:description" content="Selling privately? Smart. Here's the part most people don't plan for. Find your local Mate — free expert backup for when deals get serious.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mymateinrealestate.com.au">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://mymateinrealestate.com.au">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:  #0E2A44;
+    --coral: #E07856;
+    --swell: #2A6EA8;
+    --sand:  #E8D9BE;
+    --paper: #F4EEE2;
+    --cream: #FAF6EC;
+    --ink:   #141111;
+    --white: #FFFFFF;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+  /* ── NAV ──────────────────────────────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 clamp(1.5rem, 5vw, 4rem); height: 76px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(250,246,236,0.96); backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(14,42,68,0.07); transition: background 0.3s;
+  }
+  .nav-logo {
+    display: flex; align-items: baseline; gap: 0.15em;
+    text-decoration: none; font-size: 1.1rem; font-weight: 700; color: var(--navy);
+  }
+  .nav-logo em {
+    font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;
+    font-size: 1.35em; color: var(--coral); line-height: 1;
+  }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.875rem; font-weight: 500; color: var(--navy);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--coral); }
+  .nav-cta {
+    background: var(--coral); color: var(--white) !important;
+    padding: 0.5rem 1.25rem; border-radius: 100px;
+    font-weight: 600 !important; transition: opacity 0.2s !important;
+  }
+  .nav-cta:hover { opacity: 0.88; }
+
+  /* hamburger */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    padding: 4px; border: none; background: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px; background: var(--navy);
+    border-radius: 2px; transition: transform 0.25s, opacity 0.25s; transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none; position: fixed; top: 76px; left: 0; right: 0;
+    background: rgba(250,246,236,0.98); backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(14,42,68,0.1);
+    padding: 1.25rem clamp(1.25rem, 5vw, 4rem);
+    flex-direction: column; z-index: 99;
+    transform: translateY(-8px); opacity: 0;
+    transition: transform 0.2s, opacity 0.2s; pointer-events: none;
+  }
+  .mobile-menu.open { display: flex; transform: translateY(0); opacity: 1; pointer-events: all; }
+  .mobile-menu a {
+    display: block; padding: 0.875rem 0; font-size: 1rem; font-weight: 600;
+    color: var(--navy); text-decoration: none;
+    border-bottom: 1px solid rgba(14,42,68,0.07); transition: color 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a.mobile-cta { color: var(--coral); font-weight: 700; margin-top: 0.25rem; }
+  .mobile-menu a:hover { color: var(--coral); }
+
+  /* ── HERO ─────────────────────────────────────────────────────────────────── */
+  .hero {
+    min-height: 100svh; display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 0 clamp(1.5rem, 5vw, 4rem); padding-top: 76px;
+    gap: 4rem; max-width: 1400px; margin: 0 auto;
+  }
+  .hero-text { padding: 4rem 0; }
+  .hero-eyebrow {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+    color: var(--coral); text-transform: uppercase; margin-bottom: 1.25rem;
+    opacity: 0; animation: fadeUp 0.8s 0.1s forwards;
+  }
+  .hero-heading {
+    font-size: clamp(2.6rem, 5vw, 4rem); font-weight: 800; line-height: 1.08;
+    letter-spacing: -0.025em; color: var(--navy); margin-bottom: 1.25rem;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-heading em { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--coral); }
+  .hero-sub {
+    font-size: 1.0625rem; line-height: 1.7; color: var(--navy); opacity: 0.65;
+    max-width: 44ch; margin-bottom: 2.5rem;
+    opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
+  }
+  .hero-actions {
+    display: flex; align-items: center; gap: 1.5rem;
+    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--navy); color: var(--white);
+    padding: 0.875rem 2rem; border-radius: 100px;
+    font-size: 0.9375rem; font-weight: 700; text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--coral); transform: translateY(-1px); }
+  .btn-secondary {
+    font-size: 0.9rem; font-weight: 600; color: var(--navy); text-decoration: none;
+    border-bottom: 1.5px solid var(--coral); padding-bottom: 1px; transition: color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--coral); }
+
+  /* hero visual */
+  .hero-visual {
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; animation: fadeIn 1s 0.5s forwards; position: relative;
+  }
+  .hero-mark-container { position: relative; width: 400px; height: 400px; }
+  .hero-mark-bg { position: absolute; inset: 0; background: var(--paper); border-radius: 50%; }
+  .hero-mark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .bubble-mark { width: 240px; height: auto; filter: drop-shadow(0 24px 48px rgba(14,42,68,0.12)); }
+  .hero-badge {
+    position: absolute; bottom: 36px; right: -20px; background: var(--white);
+    border-radius: 14px; padding: 0.875rem 1.125rem;
+    box-shadow: 0 8px 32px rgba(14,42,68,0.12); display: flex; flex-direction: column; gap: 0.2rem; max-width: 190px;
+  }
+  .hero-badge-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; color: var(--coral); text-transform: uppercase; }
+  .hero-badge-text { font-size: 0.825rem; font-weight: 600; color: var(--navy); line-height: 1.3; }
+  .hero-badge-2 {
+    position: absolute; top: 48px; left: -28px; background: var(--navy);
+    border-radius: 14px; padding: 0.875rem 1.125rem;
+    box-shadow: 0 8px 32px rgba(14,42,68,0.18); display: flex; flex-direction: column; gap: 0.2rem; max-width: 175px;
+  }
+  .hero-badge-2 .hero-badge-label { color: var(--sand); }
+  .hero-badge-2 .hero-badge-text { color: var(--cream); }
+
+  /* ── TRUST STRIP ──────────────────────────────────────────────────────────── */
+  .trust-strip {
+    background: var(--navy); padding: 1.25rem clamp(1.5rem, 5vw, 4rem);
+    display: flex; align-items: center; justify-content: center;
+    gap: clamp(2rem, 5vw, 5rem); flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; color: var(--sand); text-transform: uppercase;
+  }
+  .trust-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--coral); flex-shrink: 0; }
+
+  /* ── SECTION BASE ─────────────────────────────────────────────────────────── */
+  .section { padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 4rem); max-width: 1400px; margin: 0 auto; }
+  .section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; color: var(--coral); text-transform: uppercase; margin-bottom: 1rem; }
+  .section-heading {
+    font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 800; line-height: 1.1;
+    letter-spacing: -0.02em; color: var(--navy); max-width: 22ch; margin-bottom: 1.25rem;
+  }
+  .section-heading em { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--coral); }
+  .section-body { font-size: 1rem; line-height: 1.75; color: var(--ink); opacity: 0.72; max-width: 52ch; }
+
+  /* ── WHO IS YOUR MATE ─────────────────────────────────────────────────────── */
+  .mate-intro-section { background: var(--paper); }
+  .mate-intro-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .mate-cards { display: flex; flex-direction: column; gap: 0.875rem; }
+  .mate-card {
+    display: flex; gap: 1rem; align-items: flex-start;
+    background: var(--white); border-radius: 14px; padding: 1.25rem;
+    border: 1px solid rgba(14,42,68,0.07);
+  }
+  .mate-card.dark { background: var(--navy); border-color: transparent; }
+  .mate-card-text h4 { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 0.2rem; }
+  .mate-card.dark .mate-card-text h4 { color: var(--cream); }
+  .mate-card-text p { font-size: 0.85rem; line-height: 1.6; color: var(--ink); opacity: 0.65; margin: 0; }
+  .mate-card.dark .mate-card-text p { color: var(--sand); opacity: 1; }
+
+  /* ── THE ONE THING ────────────────────────────────────────────────────────── */
+  .one-thing { background: var(--paper); }
+  .one-thing-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .fear-card {
+    background: var(--white); border-radius: 20px; padding: 2rem;
+    border: 1px solid rgba(14,42,68,0.08); box-shadow: 0 4px 24px rgba(14,42,68,0.06);
+  }
+  .fear-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1.125rem 0; border-bottom: 1px solid rgba(14,42,68,0.07);
+  }
+  .fear-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .fear-text h4 { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 0.2rem; }
+  .fear-text p { font-size: 0.85rem; line-height: 1.55; color: var(--ink); opacity: 0.65; }
+  .resolution { background: var(--navy); color: var(--cream); border-radius: 16px; padding: 2rem; margin-top: 1.5rem; }
+  .resolution-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; color: var(--coral); text-transform: uppercase; margin-bottom: 0.75rem; }
+  .resolution p { font-size: 1rem; line-height: 1.65; color: var(--sand); }
+  .resolution strong { color: var(--cream); font-weight: 700; }
+
+  /* ── HOW IT WORKS ─────────────────────────────────────────────────────────── */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .step {
+    background: var(--paper); border-radius: 16px; padding: 2rem 1.75rem;
+    border: 1px solid rgba(14,42,68,0.07);
+    position: relative;
+  }
+  .step-num { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.04em; color: var(--coral); opacity: 0.18; line-height: 1; margin-bottom: 1rem; }
+  .step h3 { font-size: 1.0625rem; font-weight: 700; color: var(--navy); margin-bottom: 0.6rem; line-height: 1.2; }
+  .step p { font-size: 0.875rem; line-height: 1.65; color: var(--ink); opacity: 0.7; }
+
+  /* ── OBJECTIONS ───────────────────────────────────────────────────────────── */
+  .objections-wrap { background: var(--navy); }
+  .objections-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .objections-intro .section-heading { color: var(--cream); max-width: 18ch; }
+  .objections-intro .section-body { color: var(--sand); opacity: 1; }
+  .objection-list { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem; }
+  .objection {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px; padding: 1.5rem; border-left: 3px solid var(--coral);
+  }
+  .objection-q { font-size: 0.85rem; font-weight: 600; color: var(--sand); margin-bottom: 0.6rem; opacity: 0.65; font-style: italic; }
+  .objection-a { font-size: 0.9375rem; font-weight: 600; color: var(--cream); line-height: 1.5; }
+  .objection-a em { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--coral); }
+
+  /* ── FIND YOUR MATE ───────────────────────────────────────────────────────── */
+  .find-wrap { background: var(--cream); text-align: center; }
+  .find-inner { max-width: 640px; margin: 0 auto; }
+  .find-inner .section-heading { max-width: none; text-align: center; margin: 0 auto 1.25rem; }
+  .find-inner .section-body { text-align: center; max-width: 44ch; margin: 0 auto 2.5rem; }
+  .suburb-input-wrap {
+    display: flex; gap: 0.75rem; max-width: 480px; margin: 0 auto;
+    background: var(--white); border-radius: 100px; padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    box-shadow: 0 4px 24px rgba(14,42,68,0.1); border: 1.5px solid rgba(14,42,68,0.1);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .suburb-input-wrap:focus-within { border-color: var(--coral); box-shadow: 0 4px 24px rgba(224,120,86,0.15); }
+  .suburb-input {
+    flex: 1; border: none; outline: none; background: transparent;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem; font-weight: 500; color: var(--navy);
+  }
+  .suburb-input::placeholder { color: rgba(14,42,68,0.35); }
+  .suburb-btn {
+    background: var(--coral); color: var(--white); border: none; cursor: pointer;
+    padding: 0.7rem 1.4rem; border-radius: 100px;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.875rem; font-weight: 700;
+    white-space: nowrap; transition: background 0.2s;
+  }
+  .suburb-btn:hover { background: var(--navy); }
+  .find-note { margin-top: 0.875rem; font-size: 0.78rem; color: var(--navy); opacity: 0.4; font-weight: 500; }
+
+  /* find expansion */
+  .find-expand {
+    max-width: 480px; margin: 1.25rem auto 0;
+    overflow: hidden; max-height: 0; opacity: 0;
+    transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease;
+  }
+  .find-expand.open { max-height: 420px; opacity: 1; }
+  .find-expand-inner {
+    background: var(--white); border-radius: 20px; padding: 1.5rem;
+    box-shadow: 0 8px 32px rgba(14,42,68,0.1); border: 1.5px solid rgba(14,42,68,0.09); text-align: left;
+  }
+  .find-expand-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; color: var(--coral); text-transform: uppercase; margin-bottom: 1rem; }
+  .find-expand-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .find-expand-field { display: flex; flex-direction: column; gap: 0.3rem; }
+  .find-expand-field.full { grid-column: 1 / -1; }
+  .find-expand-field label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; color: var(--navy); text-transform: uppercase; }
+  .find-expand-field input {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; font-weight: 500; color: var(--navy);
+    background: var(--paper); border: 1.5px solid rgba(14,42,68,0.12); border-radius: 10px;
+    padding: 0.65rem 0.875rem; outline: none; width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .find-expand-field input:focus { border-color: var(--coral); box-shadow: 0 0 0 3px rgba(224,120,86,0.1); background: var(--white); }
+  .find-expand-field input::placeholder { color: rgba(14,42,68,0.3); }
+  .find-submit {
+    width: 100%; background: var(--navy); color: var(--white); border: none; cursor: pointer;
+    padding: 0.875rem; border-radius: 100px;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem; font-weight: 700;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .find-submit:hover { background: var(--coral); transform: translateY(-1px); }
+  .find-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .find-success {
+    display: none; text-align: center; padding: 2rem 1rem;
+    flex-direction: column; align-items: center; gap: 0.875rem;
+  }
+  .find-success.visible { display: flex; }
+  .find-success-tick {
+    width: 52px; height: 52px; border-radius: 50%; background: var(--coral); color: var(--white);
+    display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700;
+  }
+  .find-success h3 { font-size: 1.2rem; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; }
+  .find-success p { font-size: 0.875rem; color: var(--ink); opacity: 0.6; line-height: 1.6; max-width: 36ch; }
+
+  /* ── FOOTER ───────────────────────────────────────────────────────────────── */
+  footer {
+    background: var(--navy); padding: 2.5rem clamp(1.5rem, 5vw, 4rem);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-logo { display: flex; align-items: baseline; gap: 0.15em; font-size: 1rem; font-weight: 700; color: var(--cream); text-decoration: none; }
+  .footer-logo em { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.25em; color: var(--coral); line-height: 1; }
+  .footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
+  .footer-links a { font-size: 0.8rem; font-weight: 500; color: var(--sand); opacity: 0.65; text-decoration: none; transition: opacity 0.2s; }
+  .footer-links a:hover { opacity: 1; }
+  .footer-copy { font-size: 0.78rem; color: var(--sand); opacity: 0.4; font-weight: 500; }
+
+  /* ── ANIMATIONS ───────────────────────────────────────────────────────────── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s, transform 0.7s; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ── RESPONSIVE ───────────────────────────────────────────────────────────── */
+  @media (max-width: 960px) {
+    .hamburger { display: flex; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; gap: 2rem; }
+    .hero-visual { display: none; }
+    .mate-intro-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .one-thing-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .objections-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .steps { grid-template-columns: 1fr; }
+    .find-expand-fields { grid-template-columns: 1fr; }
+    .find-expand-field.full { grid-column: 1; }
+    .trust-strip { gap: 1rem 2rem; }
+  }
+  @media (max-width: 480px) {
+    nav { padding: 0 1.25rem; height: 64px; }
+    .mobile-menu { top: 64px; }
+    .nav-cta { display: none; }
+    .hero { padding: 0 1.25rem; padding-top: 74px; }
+    .hero-text { padding: 2.5rem 0 1.5rem; }
+    .hero-heading { font-size: 2.1rem; }
+    .hero-actions { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .btn-primary { width: 100%; justify-content: center; padding: 1rem; }
+    .section { padding: 3rem 1.25rem; }
+    .section-heading { font-size: 1.75rem; }
+    .step { padding: 1.5rem 1.25rem; }
+    .fear-card { padding: 1.5rem 1.125rem; }
+    .fear-item { gap: 0.75rem; }
+    .resolution { padding: 1.5rem 1.125rem; }
+    .objection { padding: 1.125rem; }
+    .suburb-input-wrap { flex-direction: column; border-radius: 16px; padding: 1rem; gap: 0.75rem; }
+    .suburb-input { font-size: 1rem; }
+    .suburb-btn { width: 100%; padding: 0.875rem; border-radius: 12px; }
+    .find-expand-inner { padding: 1.125rem; }
+    .trust-strip { padding: 1rem 1.25rem; flex-direction: column; gap: 0.625rem; }
+    footer { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 2rem 1.25rem; }
+    .footer-links { gap: 0.875rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="/" class="nav-logo">My <em>Mate</em> in Real Estate</a>
+  <ul class="nav-links">
+    <li><a href="#how-it-works">How it works</a></li>
+    <li><a href="/mates">For agents</a></li>
+    <li><a href="/referrers">For platforms</a></li>
+    <li><a href="#find-your-mate" class="nav-cta">Find your Mate</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#how-it-works" onclick="closeMenu()">How it works</a>
+  <a href="/mates" onclick="closeMenu()">For agents</a>
+  <a href="/referrers" onclick="closeMenu()">For platforms</a>
+  <a href="#find-your-mate" class="mobile-cta" onclick="closeMenu()">Find your Mate →</a>
+</div>
+
+<!-- HERO -->
+<div style="max-width:1400px;margin:0 auto;">
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">For private sellers</p>
+    <h1 class="hero-heading">Selling privately?<br><em>Smart.</em> Here's the<br>part most people miss.</h1>
+    <p class="hero-sub" style="opacity:1;animation:fadeUp 0.8s 0.3s forwards;">When offers get serious, inspections go sideways, or a buyer goes cold — most private sellers are on their own. Your Mate is a trusted local agent, ready when you need them. Free. No catch. No commission unless you want them to take over.</p>
+    <div class="hero-actions">
+      <a href="#find-your-mate" class="btn-primary">Find my Mate →</a>
+      <a href="#how-it-works" class="btn-secondary">How it works</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-mark-container">
+      <div class="hero-mark-bg"></div>
+      <div class="hero-mark">
+        <!-- Speech bubble mark SVG -->
+        <svg class="bubble-mark" viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="184" height="130" rx="28" fill="#E07856"/>
+          <circle cx="30" cy="168" r="20" fill="#E07856"/>
+          <rect x="46" y="48" width="108" height="14" rx="7" fill="rgba(255,255,255,0.3)"/>
+          <rect x="46" y="74" width="80" height="14" rx="7" fill="rgba(255,255,255,0.5)"/>
+          <rect x="46" y="100" width="60" height="14" rx="7" fill="rgba(255,255,255,0.2)"/>
+        </svg>
+      </div>
+      <div class="hero-badge">
+        <p class="hero-badge-label">Just now</p>
+        <p class="hero-badge-text">"Offer came in. My Mate spotted a clause I would've missed."</p>
+      </div>
+      <div class="hero-badge-2">
+        <p class="hero-badge-label">Free service</p>
+        <p class="hero-badge-text">No obligation. No commission pitch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item"><div class="trust-dot"></div>Free for private sellers</div>
+  <div class="trust-item"><div class="trust-dot"></div>No obligation. Ever.</div>
+  <div class="trust-item"><div class="trust-dot"></div>Local experts, hand-picked</div>
+  <div class="trust-item"><div class="trust-dot"></div>You stay in control</div>
+</div>
+
+<!-- WHO IS YOUR MATE -->
+<div class="mate-intro-section">
+<section class="section">
+  <div class="mate-intro-inner">
+    <div>
+      <p class="section-label reveal">What is a Mate?</p>
+      <h2 class="section-heading reveal reveal-delay-1">Not an agent.<br>Not a <em>stranger.</em><br>Your Mate.</h2>
+      <p class="section-body reveal reveal-delay-2">A Mate is a real estate professional in your suburb — experienced, approved, and on call for when your private sale needs an expert eye. They're not there to take over. They're there to back you up.</p>
+    </div>
+    <div class="mate-cards">
+      <div class="mate-card reveal">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:36px;height:36px;flex-shrink:0;">
+          <rect width="40" height="40" rx="10" fill="#E07856"/>
+          <path d="M14 26l5-5 3 3 7-8" stroke="#FAF6EC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="mate-card-text">
+          <h4>Checks your paperwork</h4>
+          <p>Contracts, Section 32s, special conditions — a Mate knows what to look for before you sign anything.</p>
+        </div>
+      </div>
+      <div class="mate-card reveal reveal-delay-1">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:36px;height:36px;flex-shrink:0;">
+          <rect width="40" height="40" rx="10" fill="#E07856"/>
+          <path d="M12 24l4-4 4 4 4-4 4 4" stroke="#FAF6EC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="mate-card-text">
+          <h4>Reads the buyer for you</h4>
+          <p>Serious, tyre-kicker, or lowballer? Your Mate's read a thousand buyers. They'll tell you honestly.</p>
+        </div>
+      </div>
+      <div class="mate-card dark reveal reveal-delay-2">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:36px;height:36px;flex-shrink:0;">
+          <rect width="40" height="40" rx="10" fill="rgba(255,255,255,0.12)"/>
+          <path d="M20 12v8m0 0l-4 4m4-4l4 4" stroke="#E07856" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="mate-card-text">
+          <h4>Picks up when it matters</h4>
+          <p>7pm on a Friday, something unexpected happens. Your Mate picks up. That's the whole point.</p>
+        </div>
+      </div>
+      <div class="mate-card reveal reveal-delay-3">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:36px;height:36px;flex-shrink:0;">
+          <rect width="40" height="40" rx="10" fill="#E07856"/>
+          <path d="M13 20h14M20 13v14" stroke="#FAF6EC" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        <div class="mate-card-text">
+          <h4>Takes over if you need them to</h4>
+          <p>If at any point you decide you'd rather hand it over — your Mate can step in as your full agent. Your call.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <p class="section-label reveal">Simple by design</p>
+  <h2 class="section-heading reveal reveal-delay-1">Three steps.<br>That's <em>it.</em></h2>
+  <div class="steps">
+    <div class="step reveal reveal-delay-1">
+      <div class="step-num">01</div>
+      <h3>List privately</h3>
+      <p>Use any private sale platform you choose. Upload your photos. Go live on the portals. You're in control of your campaign.</p>
+    </div>
+    <div class="step reveal reveal-delay-2">
+      <div class="step-num">02</div>
+      <h3>Meet your Mate</h3>
+      <p>Tell us your suburb. We introduce you to the approved local agent for your area — warm, professional, genuinely helpful. No sales pitch. No obligation.</p>
+    </div>
+    <div class="step reveal reveal-delay-3">
+      <div class="step-num">03</div>
+      <h3>Sell with confidence</h3>
+      <p>Your campaign proceeds on your terms. When you need expert input — on an offer, a buyer, a negotiation — your Mate is already there. One call away.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OBJECTIONS -->
+<div class="objections-wrap">
+<section class="section objections-inner" id="objections">
+  <div class="objections-intro">
+    <p class="section-label reveal" style="color:var(--sand);opacity:0.6;">We've heard it all</p>
+    <h2 class="section-heading reveal reveal-delay-1">"Sounds too good to be true."</h2>
+    <p class="section-body reveal reveal-delay-2" style="color:var(--sand);opacity:1;">Fair. Here's what's actually going on.</p>
+  </div>
+  <div class="objection-list">
+    <div class="objection reveal">
+      <p class="objection-q">"What does the agent get out of it?"</p>
+      <p class="objection-a">Your Mate earns referral commissions through <em>Referrer.com.au</em> — for loans, property management, and professional services. They don't need to charge you. They're already making the network work for them.</p>
+    </div>
+    <div class="objection reveal reveal-delay-1">
+      <p class="objection-q">"Will they pressure me to list with them?"</p>
+      <p class="objection-a">No. MMIRE Mates are approved specifically because they respect the private sale choice. If you want to list with them later, they'll help. But that's <em>your</em> decision, not theirs to push.</p>
+    </div>
+    <div class="objection reveal reveal-delay-2">
+      <p class="objection-q">"What if my sale is really simple?"</p>
+      <p class="objection-a">Then you'll barely need them. Most Mates hope your sale goes smoothly. But when something unexpected happens — and in property, something usually does — <em>they're already in your corner.</em></p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FIND YOUR MATE -->
+<div class="find-wrap">
+<section class="section find-inner" id="find-your-mate">
+  <p class="section-label reveal">It's free. Takes 30 seconds.</p>
+  <h2 class="section-heading reveal reveal-delay-1">Find your local<br><em>Mate.</em></h2>
+  <p class="section-body reveal reveal-delay-2">Tell us your suburb. We'll introduce you to the approved Mate in your area — no spam, no follow-up you didn't ask for.</p>
+
+  <div id="findStep1">
+    <div class="suburb-input-wrap">
+      <input class="suburb-input" id="suburbInput" type="text" placeholder="Your suburb…" autocomplete="off">
+      <button class="suburb-btn" onclick="findMate()">Find my Mate</button>
+    </div>
+    <p class="find-note">100% free. No obligation. No unsolicited contact.</p>
+  </div>
+
+  <div class="find-expand" id="findExpand">
+    <div class="find-expand-inner">
+      <p class="find-expand-label" id="findSuburbLabel">Finding your Mate…</p>
+      <div class="find-expand-fields">
+        <div class="find-expand-field">
+          <label for="findName">Your name</label>
+          <input type="text" id="findName" placeholder="Sarah">
+        </div>
+        <div class="find-expand-field">
+          <label for="findPhone">Mobile</label>
+          <input type="tel" id="findPhone" placeholder="04xx xxx xxx">
+        </div>
+        <div class="find-expand-field full">
+          <label for="findEmail">Email address</label>
+          <input type="email" id="findEmail" placeholder="sarah@example.com">
+        </div>
+      </div>
+      <button class="find-submit" id="findSubmit" onclick="submitFindMate()">Introduce me to my Mate →</button>
+    </div>
+  </div>
+
+  <div class="find-success" id="findSuccess">
+    <div class="find-success-tick">✓</div>
+    <h3>You're on the list.</h3>
+    <p>We'll introduce you to your local Mate within 1 business day. They'll reach out — no pressure, no pitch.</p>
+  </div>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="/" class="footer-logo">My <em>Mate</em> in Real Estate</a>
+  <ul class="footer-links">
+    <li><a href="/mates">For agents</a></li>
+    <li><a href="/referrers">For platforms</a></li>
+    <li><a href="https://referrer.com.au" target="_blank">Referrer.com.au</a></li>
+    <li><a href="/privacy">Privacy</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 mymateinrealestate.com.au · mmire.com.au</span>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+document.addEventListener('click', e => {
+  const menu = document.getElementById('mobileMenu');
+  const btn  = document.getElementById('hamburger');
+  if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) closeMenu();
+});
+
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(el => { if (el.isIntersecting) { el.target.classList.add('visible'); observer.unobserve(el.target); } });
+}, { threshold: 0.1 });
+revealEls.forEach(el => observer.observe(el));
+
+function findMate() {
+  const suburb = document.getElementById('suburbInput').value.trim();
+  if (!suburb) {
+    const wrap = document.querySelector('.suburb-input-wrap');
+    wrap.style.borderColor = 'var(--coral)';
+    wrap.style.boxShadow = '0 4px 24px rgba(224,120,86,0.2)';
+    document.getElementById('suburbInput').focus();
+    return;
+  }
+  document.getElementById('findSuburbLabel').textContent = 'Finding your Mate in ' + suburb + '…';
+  document.getElementById('findExpand').classList.add('open');
+  setTimeout(() => {
+    document.getElementById('findExpand').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    document.getElementById('findName').focus();
+  }, 100);
+  document.querySelector('.suburb-btn').textContent = '✓ ' + suburb;
+  document.querySelector('.suburb-btn').style.background = 'var(--navy)';
+  document.querySelector('.suburb-input').disabled = true;
+}
+
+async function submitFindMate() {
+  const name   = document.getElementById('findName').value.trim();
+  const phone  = document.getElementById('findPhone').value.trim();
+  const email  = document.getElementById('findEmail').value.trim();
+  const suburb = document.getElementById('suburbInput').value.trim();
+  if (!name || !phone || !email) {
+    ['findName','findPhone','findEmail'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) el.style.borderColor = 'var(--coral)';
+    });
+    return;
+  }
+  const btn = document.getElementById('findSubmit');
+  btn.disabled = true; btn.textContent = 'Sending…';
+  try {
+    await fetch('/api/find-mate', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, phone, email, suburb })
+    });
+  } catch {}
+  document.getElementById('findStep1').style.display = 'none';
+  document.getElementById('findExpand').style.display = 'none';
+  document.getElementById('findSuccess').classList.add('visible');
+}
+
+document.getElementById('suburbInput').addEventListener('keydown', e => { if (e.key === 'Enter') findMate(); });
+
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').style.background = window.scrollY > 40
+    ? 'rgba(250,246,236,0.98)' : 'rgba(250,246,236,0.92)';
+});
+</script>
+</body>
+</html>

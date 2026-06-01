@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Platform Partner — My Mate in Real Estate · Referrer.com.au</title>
+<meta name="description" content="Connect your private sale platform to MMIRE and Referrer.com.au. Automate the introduction of a local Mate to every one of your vendors.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0E2A44; --coral: #E07856; --swell: #2A6EA8;
+    --sand: #E8D9BE; --paper: #F4EEE2; --cream: #FAF6EC;
+    --ink: #141111; --white: #FFFFFF;
+    --r-purple: #1E1040; --r-orange: #FF6200; --r-orangeLt: #FF7A1A;
+  }
+  body { font-family: "Plus Jakarta Sans", sans-serif; background: var(--cream); color: var(--ink); min-height: 100svh; }
+
+  .site-header {
+    background: var(--r-purple); border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 1rem clamp(1.25rem,4vw,3rem);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .header-logo { display: flex; align-items: baseline; gap: 0.15em; text-decoration: none; font-size: 1rem; font-weight: 700; color: var(--cream); }
+  .header-logo em { font-family: "Instrument Serif", serif; font-style: italic; color: var(--coral); font-size: 1.3em; line-height: 1; }
+  .back-link { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.4); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+  .back-link:hover { color: var(--cream); }
+
+  .page { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100svh - 65px); }
+
+  .left {
+    background: var(--r-purple); padding: clamp(2rem,4vw,3.5rem);
+    display: flex; flex-direction: column;
+    position: sticky; top: 65px; height: calc(100svh - 65px); overflow-y: auto;
+  }
+  .left-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; color: var(--r-orange); text-transform: uppercase; margin-bottom: 0.75rem; }
+  .left-heading { font-size: clamp(1.7rem,2.5vw,2.2rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: var(--cream); margin-bottom: 1rem; }
+  .left-heading em { font-family: "Instrument Serif", serif; font-style: italic; color: var(--r-orange); }
+  .left-body { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.55); margin-bottom: 2rem; }
+
+  .vps { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+  .vp {
+    display: flex; gap: 0.875rem; align-items: flex-start; padding: 0.875rem 1rem;
+    border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+  }
+  .vp-text h4 { font-size: 0.875rem; font-weight: 700; color: var(--cream); margin-bottom: 0.15rem; }
+  .vp-text p  { font-size: 0.8rem; line-height: 1.5; color: rgba(255,255,255,0.45); }
+
+  /* Earn teaser */
+  .earn-teaser {
+    background: rgba(255,255,255,0.04); border-radius: 16px;
+    border: 1px solid rgba(255,98,0,0.3); border-top: 3px solid var(--r-orange);
+    padding: 1.375rem; margin-top: auto;
+  }
+  .earn-teaser-logo { margin-bottom: 1rem; max-width: 200px; }
+  .earn-teaser-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; color: var(--r-orange); text-transform: uppercase; margin-bottom: 0.5rem; }
+  .earn-teaser-heading { font-size: 1rem; font-weight: 700; color: var(--cream); margin-bottom: 0.4rem; line-height: 1.3; }
+  .earn-teaser-body { font-size: 0.8rem; line-height: 1.6; color: rgba(255,255,255,0.42); margin-bottom: 1rem; }
+  .earn-teaser-cta {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--r-orange); color: var(--white);
+    padding: 0.6rem 1.25rem; border-radius: 8px;
+    font-size: 0.8125rem; font-weight: 700;
+    border: none; cursor: pointer; font-family: inherit;
+    transition: background 0.2s;
+  }
+  .earn-teaser-cta:hover { background: var(--r-orangeLt); }
+
+  .right {
+    background: var(--paper); padding: clamp(2rem,4vw,3.5rem);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .form-header { margin-bottom: 2rem; }
+  .form-header h2 { font-size: 1.375rem; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 0.4rem; }
+  .form-header p { font-size: 0.875rem; color: var(--ink); opacity: 0.55; line-height: 1.6; }
+
+  .form { display: flex; flex-direction: column; gap: 1.125rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .field { display: flex; flex-direction: column; gap: 0.35rem; }
+  .field label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; color: var(--navy); text-transform: uppercase; }
+  .field input {
+    font-family: "Plus Jakarta Sans", sans-serif; font-size: 0.9375rem; font-weight: 500; color: var(--navy);
+    background: var(--white); border: 1.5px solid rgba(14,42,68,0.14); border-radius: 10px;
+    padding: 0.8rem 1rem; outline: none; width: 100%; transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .field input::placeholder { color: rgba(14,42,68,0.3); }
+  .field input:focus { border-color: var(--r-orange); box-shadow: 0 0 0 3px rgba(255,98,0,0.1); }
+  .submit-btn {
+    background: var(--r-orange); color: var(--white); border: none; cursor: pointer;
+    padding: 1rem 2rem; border-radius: 100px; width: 100%;
+    font-family: "Plus Jakarta Sans", sans-serif; font-size: 1rem; font-weight: 700;
+    transition: background 0.2s, transform 0.2s; margin-top: 0.25rem;
+  }
+  .submit-btn:hover { background: var(--r-orangeLt); transform: translateY(-1px); }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .form-note { font-size: 0.78rem; color: var(--ink); opacity: 0.4; text-align: center; margin-top: 0.375rem; line-height: 1.5; }
+
+  @media (max-width: 860px) {
+    .page { grid-template-columns: 1fr; }
+    .left { position: static; height: auto; }
+    .earn-teaser { margin-top: 2rem; }
+  }
+  @media (max-width: 480px) {
+    .site-header { padding: 0.875rem 1.25rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .right { padding: 2rem 1.25rem; }
+    .left { padding: 2rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="header-logo">My <em>Mate</em> in Real Estate</a>
+  <a href="/" class="back-link">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back
+  </a>
+</header>
+
+<div class="page">
+  <div class="left">
+    <p class="left-eyebrow">Platform partners</p>
+    <h1 class="left-heading">Your vendors deserve a <em>Mate.</em></h1>
+    <p class="left-body">Every private sale listing on your platform is a vendor who could use expert backup — and a referral opportunity that converts to real income. MMIRE automates the introduction. Referrer.com.au tracks the revenue.</p>
+
+    <div class="vps">
+      <div class="vp">
+        <svg viewBox="0 0 28 28" fill="none" style="width:28px;height:28px;flex-shrink:0;"><rect width="28" height="28" rx="7" fill="rgba(255,98,0,0.18)"/><path d="M8 14h12M14 8v12" stroke="#FF6200" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <div class="vp-text">
+          <h4>API-connected vendor flow</h4>
+          <p>Your listing feed connects directly. Every new vendor is automatically introduced to their local Mate — no manual work on your end.</p>
+        </div>
+      </div>
+      <div class="vp">
+        <svg viewBox="0 0 28 28" fill="none" style="width:28px;height:28px;flex-shrink:0;"><rect width="28" height="28" rx="7" fill="rgba(255,98,0,0.18)"/><path d="M9 19l3-3 3 3 5-6" stroke="#FF6200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="vp-text">
+          <h4>Tracked referral income</h4>
+          <p>Every vendor who converts to a loan, PM, or professional service earns your platform a referral share — tracked, compliant, paid at settlement.</p>
+        </div>
+      </div>
+      <div class="vp">
+        <svg viewBox="0 0 28 28" fill="none" style="width:28px;height:28px;flex-shrink:0;"><rect width="28" height="28" rx="7" fill="rgba(255,98,0,0.18)"/><circle cx="14" cy="14" r="5" stroke="#FF6200" stroke-width="1.8"/><path d="M14 9v5l3 2" stroke="#FF6200" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <div class="vp-text">
+          <h4>Counter-cyclical revenue</h4>
+          <p>Referral income pays at settlement — a stream that runs independently of your subscription or listing model.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="earn-teaser">
+      <div class="earn-teaser-logo"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 648 216.667" style="width:100%;height:auto;display:block;"><path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M264.977,100.408h16.878h24.781h2.767h0.025
+	c-0.371-3.08-1.276-5.88-2.716-8.4c-2.036-3.564-4.81-6.363-8.323-8.399c-3.513-2.037-7.56-3.055-12.141-3.055
+	c-4.683,0-8.782,1.018-12.294,3.055c-3.512,2.036-6.262,4.861-8.246,8.475c-1.361,2.475-2.255,5.25-2.683,8.324H264.977z
+	 M289.149,148.819c-9.061,0-16.978-1.807-23.747-5.422c-6.771-3.615-12.015-8.577-15.731-14.891
+	c-3.716-6.312-5.574-13.489-5.574-21.532c0-8.145,1.807-15.348,5.422-21.609c3.615-6.262,8.603-11.175,14.965-14.738
+	c6.365-3.563,13.619-5.345,21.764-5.345c7.941,0,15.017,1.729,21.228,5.192c6.21,3.461,11.097,8.348,14.661,14.66
+	c3.563,6.313,5.345,13.745,5.345,22.296c0,0.815-0.024,1.732-0.076,2.75s-0.128,1.985-0.229,2.901h-45.32h-16.878h-1.788
+	c0.521,2.818,1.488,5.415,2.899,7.788c2.24,3.768,5.396,6.67,9.468,8.705c4.073,2.037,8.757,3.055,14.05,3.055
+	c4.583,0,8.705-0.712,12.371-2.139c3.665-1.424,6.923-3.664,9.774-6.719l10.232,11.759c-3.666,4.276-8.272,7.56-13.822,9.851
+	C302.614,147.674,296.276,148.819,289.149,148.819z M126.768,100.408h16.878h24.781h2.767h0.025c-0.371-3.08-1.276-5.88-2.716-8.4
+	c-2.036-3.564-4.81-6.363-8.323-8.399c-3.513-2.037-7.56-3.055-12.141-3.055c-4.683,0-8.781,1.018-12.294,3.055
+	c-3.512,2.036-6.262,4.861-8.246,8.475c-1.36,2.475-2.254,5.25-2.683,8.324H126.768z M150.94,148.819
+	c-9.061,0-16.978-1.807-23.747-5.422c-6.771-3.615-12.015-8.577-15.731-14.891c-3.716-6.312-5.575-13.489-5.575-21.532
+	c0-8.145,1.807-15.348,5.422-21.609c3.615-6.262,8.603-11.175,14.965-14.738c6.364-3.563,13.619-5.345,21.763-5.345
+	c7.942,0,15.017,1.729,21.228,5.192c6.21,3.461,11.097,8.348,14.662,14.66c3.563,6.313,5.345,13.745,5.345,22.296
+	c0,0.815-0.025,1.732-0.076,2.75s-0.128,1.985-0.229,2.901h-45.32h-16.878h-1.788c0.522,2.818,1.488,5.415,2.9,7.788
+	c2.24,3.768,5.396,6.67,9.468,8.705c4.073,2.037,8.757,3.055,14.05,3.055c4.583,0,8.705-0.712,12.371-2.139
+	c3.665-1.424,6.923-3.664,9.774-6.719l10.232,11.759c-3.666,4.276-8.272,7.56-13.821,9.851
+	C164.405,147.674,158.067,148.819,150.94,148.819z M200.044,66.81v-5.192c0-8.553,2.52-15.399,7.56-20.541
+	c5.04-5.142,12.243-7.712,21.609-7.712c3.36,0,6.542,0.356,9.545,1.069c3.004,0.712,5.523,1.832,7.56,3.359l-5.192,14.356
+	c-1.425-1.121-3.055-1.96-4.888-2.521c-1.832-0.561-3.716-0.84-5.65-0.84c-3.971,0-6.975,1.094-9.011,3.283
+	c-2.036,2.19-3.054,5.473-3.054,9.851v4.887h22.449v15.272h-21.838v65.668h-19.089V82.082V66.81z M54.138,147.75V66.199h18.174
+	v11.911h0.02c2.351-3.582,5.474-6.432,9.371-8.551c5.243-2.851,11.785-4.275,19.624-4.275v18.173
+	c-0.814-0.203-1.577-0.332-2.29-0.382c-0.714-0.051-1.426-0.076-2.139-0.076c-7.229,0-12.981,2.112-17.257,6.337
+	s-6.413,10.512-6.413,18.86v39.554H54.138z M340.137,147.75V66.199h18.174v11.911h0.021c2.351-3.582,5.474-6.432,9.371-8.551
+	c5.243-2.851,11.784-4.275,19.624-4.275v18.173c-0.814-0.203-1.578-0.332-2.29-0.382c-0.714-0.051-1.426-0.076-2.139-0.076
+	c-7.229,0-12.981,2.112-17.258,6.337c-4.275,4.225-6.413,10.512-6.413,18.86v39.554H340.137z"/>
+<path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M414.789,175.225c1.896,0,3.434,1.537,3.434,3.433
+	c0,1.896-1.538,3.435-3.434,3.435c-1.896,0-3.434-1.537-3.434-3.435C411.355,176.762,412.894,175.225,414.789,175.225
+	 M512.25,175.225c1.896,0,3.433,1.537,3.433,3.433c0,1.896-1.537,3.435-3.433,3.435c-1.897,0-3.435-1.537-3.435-3.435
+	C508.815,176.762,510.354,175.225,512.25,175.225z M559.614,181.435c-0.25,0.147-0.509,0.28-0.775,0.398
+	c-1.271,0.57-2.685,0.766-4.068,0.766c-2.736,0-5.546-0.65-7.354-2.864c-1.874-2.295-2.239-5.845-2.239-8.709v-11.924h5.217v12.107
+	c0,1.47,0.133,3.868,1.068,5.064c0.779,1.005,2.19,1.215,3.383,1.215c0.853,0,1.7-0.149,2.458-0.557
+	c0.691-0.366,1.222-0.893,1.623-1.558c0.258-0.441,0.411-0.948,0.507-1.446c0.205-1.107,0.181-2.386,0.181-3.514v-11.313h5.253
+	v22.96h-5.253V181.435z M536.614,170.452c0-1.85-0.664-3.392-1.938-4.723c-1.195-1.25-2.606-1.998-4.36-1.998
+	c-1.839,0-3.34,0.668-4.604,1.997c-1.352,1.418-1.934,3.114-1.934,5.058c0,1.867,0.595,3.46,1.908,4.8
+	c1.261,1.286,2.749,1.94,4.554,1.94c1.793,0,3.224-0.745,4.43-2.041C535.996,174.061,536.614,172.394,536.614,170.452z
+	 M536.614,180.666c-0.443,0.304-0.911,0.572-1.397,0.806c-1.59,0.76-3.292,1.127-5.052,1.127c-3.254,0-6.106-1.113-8.386-3.458
+	c-2.282-2.34-3.351-5.216-3.351-8.468c0-3.296,1.093-6.2,3.422-8.558c2.336-2.356,5.242-3.455,8.541-3.455
+	c1.699,0,3.347,0.34,4.878,1.086c0.469,0.229,0.918,0.492,1.345,0.788v-1.433h5.197v22.96h-5.197V180.666z M487.608,161.509
+	c0.715-0.712,1.531-1.302,2.442-1.758c1.469-0.733,3.065-1.053,4.701-1.053c2.729,0,5.364,0.749,7.075,3.008
+	c1.792,2.368,2.151,5.9,2.151,8.785v11.57h-5.146v-12.107c0-1.441-0.136-3.74-1.052-4.915c-0.762-0.984-2.119-1.195-3.287-1.195
+	c-0.847,0-1.679,0.152-2.43,0.557c-0.673,0.359-1.183,0.867-1.563,1.517c-0.26,0.466-0.42,0.975-0.521,1.493
+	c-0.204,1.084-0.179,2.349-0.179,3.452v11.199h-5.108v-12.693c0-1.382-0.178-3.229-1.109-4.321c-0.82-0.968-2.138-1.203-3.344-1.203
+	c-0.866,0-1.72,0.15-2.491,0.558c-0.677,0.36-1.199,0.87-1.586,1.53c-0.263,0.454-0.425,0.954-0.518,1.473
+	c-0.203,1.081-0.173,2.355-0.173,3.458v11.199h-5.216v-22.96h5.216v0.836c0.287-0.163,0.582-0.311,0.886-0.442
+	c1.297-0.566,2.692-0.797,4.103-0.797c1.683,0,3.313,0.347,4.814,1.116C486.141,160.259,486.934,160.818,487.608,161.509z
+	 M449.683,170.56c0,1.905,0.553,3.576,1.868,4.977c1.26,1.333,2.766,1.952,4.595,1.952c1.802,0,3.279-0.632,4.512-1.948
+	c1.314-1.41,1.856-3.104,1.856-5.012c0-1.904-0.529-3.608-1.871-4.996c-1.3-1.342-2.886-1.914-4.737-1.914
+	c-1.755,0-3.167,0.687-4.355,1.961C450.24,166.983,449.683,168.655,449.683,170.56z M444.295,170.604
+	c0-3.302,1.141-6.185,3.435-8.564c2.234-2.317,4.979-3.582,8.214-3.582c3.287,0,6.136,1.183,8.457,3.51
+	c2.297,2.305,3.498,5.116,3.498,8.377c0,3.322-1.117,6.246-3.407,8.664c-2.261,2.38-5.056,3.627-8.346,3.627
+	s-6.128-1.191-8.419-3.555C445.445,176.73,444.295,173.88,444.295,170.604z M436.922,167.299c-0.595-1.095-1.385-2.116-2.454-2.78
+	c-1.034-0.634-2.212-0.862-3.414-0.862c-1.754,0-3.167,0.664-4.348,1.952c-1.294,1.412-1.838,3.09-1.838,4.988
+	c0,1.89,0.539,3.563,1.843,4.956c1.215,1.305,2.676,1.936,4.456,1.936c1.242,0,2.403-0.281,3.454-0.955
+	c1.032-0.664,1.756-1.578,2.255-2.691l0.351-0.784h5.62l-0.632,1.772c-0.828,2.316-2.176,4.307-4.189,5.749
+	c-1.996,1.428-4.293,2.057-6.732,2.057c-3.279,0-6.113-1.178-8.399-3.535c-2.275-2.347-3.411-5.199-3.411-8.466
+	c0-3.304,1.136-6.196,3.454-8.56c2.304-2.346,5.146-3.528,8.432-3.528c2.396,0,4.625,0.637,6.587,2.025
+	c1.997,1.406,3.367,3.352,4.246,5.613l0.701,1.806h-5.604L436.922,167.299z"/>
+<g>
+	<path fill-rule="evenodd" clip-rule="evenodd" fill="#FF6200" d="M400.675,147.75V66.199h18.174v11.911h0.021
+		c2.351-3.582,5.475-6.432,9.371-8.551c5.243-2.851,11.785-4.275,19.624-4.275v18.173c-0.814-0.203-1.577-0.332-2.29-0.382
+		c-0.714-0.051-1.426-0.076-2.138-0.076c-7.229,0-12.981,2.112-17.258,6.337s-6.413,10.512-6.413,18.86v39.554H400.675z
+		 M546.673,147.75V66.199h18.174v11.911h0.02c2.352-3.582,5.475-6.432,9.372-8.551c5.242-2.851,11.784-4.275,19.623-4.275v18.173
+		c-0.813-0.203-1.577-0.332-2.289-0.382c-0.714-0.051-1.426-0.076-2.139-0.076c-7.229,0-12.981,2.112-17.258,6.337
+		c-4.275,4.225-6.413,10.512-6.413,18.86v39.554H546.673z"/>
+	<path fill-rule="evenodd" clip-rule="evenodd" fill="#FF6200" d="M527.188,120.526l-2.738,26.798l-23.063-20.045L527.188,120.526z
+		 M468.115,113.968c0.964,5.367,3.27,10.076,7.34,13.932c4.894,4.637,10.807,6.581,17.481,6.581c4.583,0,8.855-1.092,12.744-3.467
+		l12.547,10.904c-0.492,0.387-0.994,0.763-1.506,1.126c-7.002,4.972-14.953,7.255-23.505,7.255c-11.698,0-21.762-4.193-29.912-12.6
+		c-8.117-8.367-12.18-18.511-12.18-30.159c0-2.295,0.146-4.586,0.451-6.859l0.196-1.443h64.984c-1.518-4.925-3.94-9.65-7.859-13.083
+		c-4.69-4.108-10.583-5.511-16.7-5.511c-4.771,0-9.109,1.095-12.955,3.534l-1.12,0.813l3.602,3.597l-24.801,4.431l4.514-24.689
+		l5.444,5.436l0.577-0.531c7.503-5.715,16.386-8.27,26.149-8.27c11.698,0,21.896,3.949,29.859,12.646
+		c8.268,9.022,11.49,20.301,11.49,32.356v4.001H468.115z"/>
+</g></svg></div>
+      <p class="earn-teaser-label">Platform partner rates</p>
+      <p class="earn-teaser-heading">Find out what your platform could earn.</p>
+      <p class="earn-teaser-body">Preferred partner commission rates, how the integration works, and what each converted vendor is worth — unlocked after you register.</p>
+      <button class="earn-teaser-cta" onclick="document.getElementById('contact').focus(); document.querySelector('.right').scrollIntoView({behavior:'smooth'})">
+        Show me the numbers →
+      </button>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="form-header">
+      <h2>Register your interest</h2>
+      <p>Takes sixty seconds. We'll follow up within 2 business days with a proposal tailored to your platform.</p>
+    </div>
+    <form class="form" id="referrerForm" onsubmit="submitForm(event)" novalidate>
+      <div class="form-row">
+        <div class="field">
+          <label for="contact">Your name</label>
+          <input type="text" id="contact" name="contact_name" placeholder="Sarah Chen" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="company">Platform / company</label>
+          <input type="text" id="company" name="company" placeholder="ForSaleByOwner" required autocomplete="organization">
+        </div>
+      </div>
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="sarah@platform.com.au" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" placeholder="04xx xxx xxx" autocomplete="tel">
+      </div>
+      <button type="submit" class="submit-btn" id="submitBtn">Register our interest →</button>
+      <p class="form-note">Confidential. We'll be in touch within 2 business days.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+async function submitForm(e) {
+  e.preventDefault();
+  const required = ['contact','company','email'];
+  let valid = true;
+  required.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el.value.trim()) { el.style.borderColor = 'var(--r-orange)'; valid = false; }
+    else el.style.borderColor = '';
+  });
+  if (!valid) return;
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true; btn.textContent = 'Sending…';
+  const data = {
+    contact_name: document.getElementById('contact').value.trim(),
+    company:      document.getElementById('company').value.trim(),
+    email:        document.getElementById('email').value.trim(),
+    phone:        document.getElementById('phone').value.trim(),
+  };
+  try {
+    await fetch('/api/referrers-register', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    });
+  } catch {}
+  const params = new URLSearchParams({
+    type: 'referrer', name: data.contact_name, company: data.company,
+    email: data.email, phone: data.phone,
+  });
+  window.location.href = '/thankyou?' + params.toString();
+}
+</script>
+</body>
+</html>

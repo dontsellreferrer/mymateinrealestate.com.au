@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Allow: /privacy
+
+# Registration pages — not indexed until brand is established
+Disallow: /mates
+Disallow: /referrers
+
+Sitemap: https://mymateinrealestate.com.au/sitemap.xml
