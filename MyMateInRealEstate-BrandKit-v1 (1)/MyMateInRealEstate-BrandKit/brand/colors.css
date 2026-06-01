@@ -1,0 +1,37 @@
+/* ──────────────────────────────────────────────────────────────────
+   My Mate in Real Estate — Brand Color Tokens
+   v1 · 2026
+   ────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Primary palette */
+  --mmre-navy:    #0E2A44;   /* Ocean Navy   — primary text, dark surfaces       */
+  --mmre-coral:   #E07856;   /* Coral        — the "mate" accent, hero CTA       */
+
+  /* Secondary */
+  --mmre-swell:   #2A6EA8;   /* Swell Blue   — secondary brand accent            */
+  --mmre-sand:    #E8D9BE;   /* Sand         — warm neutral, supporting surfaces */
+
+  /* Neutrals */
+  --mmre-paper:   #F4EEE2;   /* Paper        — page background                   */
+  --mmre-cream:   #FAF6EC;   /* Cream        — primary surface, inverted text    */
+  --mmre-ink:     #141111;   /* Ink          — true black, body copy alt         */
+
+  /* Functional tokens */
+  --mmre-text:           var(--mmre-navy);
+  --mmre-text-inverted:  var(--mmre-cream);
+  --mmre-bg:             var(--mmre-paper);
+  --mmre-surface:        var(--mmre-cream);
+  --mmre-accent:         var(--mmre-coral);
+  --mmre-line:           rgba(14, 42, 68, 0.10);
+}
+
+/* Helper classes */
+.mmre-bg-navy   { background: var(--mmre-navy);   color: var(--mmre-cream); }
+.mmre-bg-coral  { background: var(--mmre-coral);  color: var(--mmre-cream); }
+.mmre-bg-sand   { background: var(--mmre-sand);   color: var(--mmre-navy);  }
+.mmre-bg-paper  { background: var(--mmre-paper);  color: var(--mmre-navy);  }
+.mmre-bg-cream  { background: var(--mmre-cream);  color: var(--mmre-navy);  }
+
+.mmre-text-coral { color: var(--mmre-coral); }
+.mmre-text-navy  { color: var(--mmre-navy);  }

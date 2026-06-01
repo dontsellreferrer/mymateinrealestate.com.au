@@ -1,0 +1,28 @@
+{
+  "name": "My Mate in Real Estate",
+  "version": "1.0.0",
+  "palette": {
+    "primary": {
+      "navy":  { "hex": "#0E2A44", "rgb": [14, 42, 68],   "role": "Primary text, dark surfaces" },
+      "coral": { "hex": "#E07856", "rgb": [224, 120, 86], "role": "Accent · the 'mate' colour" }
+    },
+    "secondary": {
+      "swell": { "hex": "#2A6EA8", "rgb": [42, 110, 168], "role": "Secondary brand accent" },
+      "sand":  { "hex": "#E8D9BE", "rgb": [232, 217, 190], "role": "Warm neutral surface" }
+    },
+    "neutrals": {
+      "paper": { "hex": "#F4EEE2", "rgb": [244, 238, 226], "role": "Page background" },
+      "cream": { "hex": "#FAF6EC", "rgb": [250, 246, 236], "role": "Primary surface" },
+      "ink":   { "hex": "#141111", "rgb": [20, 17, 17],    "role": "True black, body copy alt" }
+    }
+  },
+  "usage": {
+    "primaryText":        "#0E2A44",
+    "invertedText":       "#FAF6EC",
+    "background":         "#F4EEE2",
+    "surface":            "#FAF6EC",
+    "accent":             "#E07856",
+    "linkOrCta":          "#E07856",
+    "hairline":           "rgba(14, 42, 68, 0.10)"
+  }
+}
