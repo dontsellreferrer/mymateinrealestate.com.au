@@ -11,7 +11,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app  = express();
 const PORT = process.env.PORT || 3000;
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Safe Resend initialization — don't crash if API key is missing
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || 'rick@mymateinrealestate.com.au';
 const FROM_NOTIFY  = 'notifications@mymateinrealestate.com.au';
@@ -23,6 +24,10 @@ app.use(express.static(join(__dirname, 'public')));
 
 // ── Email helpers ─────────────────────────────────────────────────────────────
 async function notify(subject, html) {
+  if (!resend) {
+    console.warn('Resend not configured: Notification skipped ->', subject);
+    return;
+  }
   try {
     await resend.emails.send({ from: FROM_NOTIFY, to: NOTIFY_EMAIL, subject, html });
   } catch (err) {
@@ -31,6 +36,10 @@ async function notify(subject, html) {
 }
 
 async function confirm(toEmail, subject, html) {
+  if (!resend) {
+    console.warn('Resend not configured: Confirmation skipped ->', toEmail);
+    return;
+  }
   try {
     await resend.emails.send({ from: FROM_CONFIRM, to: toEmail, subject, html });
   } catch (err) {
