@@ -18,6 +18,8 @@ const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || 'rick@mymateinrealestate.com.au
 const FROM_NOTIFY  = 'notifications@mymateinrealestate.com.au';
 const FROM_CONFIRM = 'hello@mymateinrealestate.com.au';
 const BASE_URL     = process.env.BASE_URL || 'https://mymateinrealestate.com.au';
+const REFERRER_API_URL = process.env.REFERRER_API_URL || 'https://referrer.com.au/api/platform';
+const REFERRER_API_KEY = process.env.REFERRER_API_KEY_MMIRE;
 
 app.use(express.json());
 app.use(express.static(join(__dirname, 'public')));
@@ -105,6 +107,7 @@ app.post('/api/find-mate', async (req, res) => {
   const { name, phone, email, suburb } = req.body;
   if (!name || !email || !suburb) return res.status(400).json({ error: 'Missing required fields' });
 
+  // 1. Notify Rick
   await notify(
     `🏠 New owner request — ${suburb}`,
     notifyTemplate(
@@ -113,6 +116,31 @@ app.post('/api/find-mate', async (req, res) => {
       `An owner in <strong>${suburb}</strong> is looking for their local Mate.`
     )
   );
+
+  // 2. Push to Referrer.com.au
+  if (REFERRER_API_KEY) {
+    try {
+      const response = await fetch(`${REFERRER_API_URL}/leads`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${REFERRER_API_KEY}`
+        },
+        body: JSON.stringify({
+          name,
+          phone,
+          email,
+          service_type: 'agent', // MMIRE "Mates" are typically agents
+          lga: suburb,
+          source: 'mmire-find-a-mate'
+        })
+      });
+      const data = await response.json();
+      if (!response.ok) console.warn('[Referrer] Lead push failed:', data.error);
+    } catch (err) {
+      console.error('[Referrer] Lead push error:', err.message);
+    }
+  }
 
   res.json({ success: true });
 });
