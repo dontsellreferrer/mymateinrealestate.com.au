@@ -24,7 +24,7 @@ const REFERRER_API_KEY = process.env.REFERRER_API_KEY_MMIRE;
 app.use(express.json());
 app.use(express.static(join(__dirname, 'public')));
 
-// ── Email helpers ─────────────────────────────────────────────────────────────
+// ── Helpers ───────────────────────────────────────────────────────────────────
 async function notify(subject, html) {
   if (!resend) {
     console.warn('Resend not configured: Notification skipped ->', subject);
@@ -46,6 +46,28 @@ async function confirm(toEmail, subject, html) {
     await resend.emails.send({ from: FROM_CONFIRM, to: toEmail, subject, html });
   } catch (err) {
     console.error('Resend confirm error:', err.message);
+  }
+}
+
+async function pushToReferrer(payload) {
+  if (!REFERRER_API_KEY) {
+    console.warn('[Referrer] API key missing: Push skipped');
+    return;
+  }
+  try {
+    const response = await fetch(`${REFERRER_API_URL}/leads`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${REFERRER_API_KEY}`
+      },
+      body: JSON.stringify(payload)
+    });
+    const data = await response.json();
+    if (!response.ok) console.warn('[Referrer] API push failed:', data.error);
+    return data;
+  } catch (err) {
+    console.error('[Referrer] API push error:', err.message);
   }
 }
 
@@ -118,29 +140,14 @@ app.post('/api/find-mate', async (req, res) => {
   );
 
   // 2. Push to Referrer.com.au
-  if (REFERRER_API_KEY) {
-    try {
-      const response = await fetch(`${REFERRER_API_URL}/leads`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${REFERRER_API_KEY}`
-        },
-        body: JSON.stringify({
-          name,
-          phone,
-          email,
-          service_type: 'agent', // MMIRE "Mates" are typically agents
-          lga: suburb,
-          source: 'mmire-find-a-mate'
-        })
-      });
-      const data = await response.json();
-      if (!response.ok) console.warn('[Referrer] Lead push failed:', data.error);
-    } catch (err) {
-      console.error('[Referrer] Lead push error:', err.message);
-    }
-  }
+  await pushToReferrer({
+    name,
+    phone,
+    email,
+    service_type: 'agent', // MMIRE "Mates" are typically agents
+    lga: suburb,
+    source: 'mmire-find-a-mate'
+  });
 
   res.json({ success: true });
 });
@@ -150,23 +157,25 @@ app.post('/api/mates-register', async (req, res) => {
   const { first_name, last_name, email, phone, area } = req.body;
   if (!first_name || !last_name || !email || !phone) return res.status(400).json({ error: 'Missing required fields' });
 
+  const fullName = `${first_name} ${last_name}`;
+
   // Build personalised TY URL
   const tyParams = new URLSearchParams({
     type: 'mate', name: first_name, email, phone, area: area || ''
   });
   const tyUrl = `${BASE_URL}/thankyou?${tyParams.toString()}`;
 
-  // Notify Rick
+  // 1. Notify Rick
   await notify(
-    `⭐ New Mate expression of interest — ${first_name} ${last_name}`,
+    `⭐ New Mate expression of interest — ${fullName}`,
     notifyTemplate(
       'New Mate expression of interest', '#0E2A44',
-      row('Name', `${first_name} ${last_name}`) + row('Area', area) + row('Email', email) + row('Phone', phone),
+      row('Name', fullName) + row('Area', area) + row('Email', email) + row('Phone', phone),
       `Follow up within 2 business days. <a href="${tyUrl}">View their thank-you page</a>`
     )
   );
 
-  // Confirm to registrant — links back to TY page only
+  // 2. Confirm to registrant
   await confirm(
     email,
     `You're in, ${first_name} — My Mate in Real Estate`,
@@ -176,6 +185,16 @@ app.post('/api/mates-register', async (req, res) => {
       tyUrl
     )
   );
+
+  // 3. Push to Referrer.com.au
+  await pushToReferrer({
+    name: fullName,
+    phone,
+    email,
+    service_type: 'mate-eoi',
+    lga: area,
+    source: 'mmire-mate-register'
+  });
 
   res.json({ success: true });
 });
@@ -193,7 +212,7 @@ app.post('/api/referrers-register', async (req, res) => {
   });
   const tyUrl = `${BASE_URL}/thankyou?${tyParams.toString()}`;
 
-  // Notify Rick — priority
+  // 1. Notify Rick — priority
   await notify(
     `🚀 Platform partner registration — ${company}`,
     notifyTemplate(
@@ -203,7 +222,7 @@ app.post('/api/referrers-register', async (req, res) => {
     )
   );
 
-  // Confirm to registrant — links back to TY page only
+  // 2. Confirm to registrant
   await confirm(
     email,
     `Registration received — My Mate in Real Estate · Referrer.com.au`,
@@ -213,6 +232,16 @@ app.post('/api/referrers-register', async (req, res) => {
       tyUrl
     )
   );
+
+  // 3. Push to Referrer.com.au
+  await pushToReferrer({
+    name: contact_name,
+    company,
+    phone,
+    email,
+    service_type: 'referrer-partner',
+    source: 'mmire-referrers-register'
+  });
 
   res.json({ success: true });
 });
